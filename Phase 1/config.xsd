@@ -1,0 +1,181 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="domain">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element type="xs:string" name="name"/>
+        <xs:element type="xs:string" name="uuid"/>
+        <xs:element type="xs:int" name="memory"/>
+        <xs:element type="xs:int" name="currentMemory"/>
+        <xs:element type="xs:byte" name="vcpu"/>
+        <xs:element name="os">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="type">
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                      <xs:attribute type="xs:string" name="arch"/>
+                      <xs:attribute type="xs:string" name="machine"/>
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="boot">
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                      <xs:attribute type="xs:string" name="dev"/>
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="clock">
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="xs:string">
+                <xs:attribute type="xs:string" name="offset"/>
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+        <xs:element type="xs:string" name="on_poweroff"/>
+        <xs:element type="xs:string" name="on_reboot"/>
+        <xs:element type="xs:string" name="on_crash"/>
+        <xs:element name="devices">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:string" name="emulator"/>
+              <xs:element name="disk">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="driver">
+                      <xs:complexType>
+                        <xs:simpleContent>
+                          <xs:extension base="xs:string">
+                            <xs:attribute type="xs:string" name="name"/>
+                            <xs:attribute type="xs:string" name="type"/>
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="source">
+                      <xs:complexType>
+                        <xs:simpleContent>
+                          <xs:extension base="xs:string">
+                            <xs:attribute type="xs:string" name="file"/>
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="target">
+                      <xs:complexType>
+                        <xs:simpleContent>
+                          <xs:extension base="xs:string">
+                            <xs:attribute type="xs:string" name="dev"/>
+                            <xs:attribute type="xs:string" name="bus"/>
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="address">
+                      <xs:complexType>
+                        <xs:simpleContent>
+                          <xs:extension base="xs:string">
+                            <xs:attribute type="xs:string" name="type"/>
+                            <xs:attribute type="xs:byte" name="controller"/>
+                            <xs:attribute type="xs:byte" name="bus"/>
+                            <xs:attribute type="xs:byte" name="unit"/>
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute type="xs:string" name="type"/>
+                  <xs:attribute type="xs:string" name="device"/>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="serial">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="target">
+                      <xs:complexType>
+                        <xs:simpleContent>
+                          <xs:extension base="xs:string">
+                            <xs:attribute type="xs:byte" name="port"/>
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute type="xs:string" name="type"/>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="console">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="target">
+                      <xs:complexType>
+                        <xs:simpleContent>
+                          <xs:extension base="xs:string">
+                            <xs:attribute type="xs:string" name="type"/>
+                            <xs:attribute type="xs:byte" name="port"/>
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute type="xs:string" name="type"/>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="input">
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                      <xs:attribute type="xs:string" name="type"/>
+                      <xs:attribute type="xs:string" name="bus"/>
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="graphics">
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                      <xs:attribute type="xs:string" name="type"/>
+                      <xs:attribute type="xs:byte" name="port"/>
+                      <xs:attribute type="xs:string" name="autoport"/>
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="memballoon">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="address">
+                      <xs:complexType>
+                        <xs:simpleContent>
+                          <xs:extension base="xs:string">
+                            <xs:attribute type="xs:string" name="type"/>
+                            <xs:attribute type="xs:string" name="domain"/>
+                            <xs:attribute type="xs:string" name="bus"/>
+                            <xs:attribute type="xs:string" name="slot"/>
+                            <xs:attribute type="xs:string" name="function"/>
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute type="xs:string" name="model"/>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute type="xs:string" name="type"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

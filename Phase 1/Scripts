@@ -1,0 +1,5 @@
+1. Resource Discovery:
+Get info about:
+1) CPU: 
+2) RAM: Get amount of free RAM: free -t | grep Total | awk '{print $4}'
+3) HDD: Get amount of free disk space: 

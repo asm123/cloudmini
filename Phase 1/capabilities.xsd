@@ -1,0 +1,124 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="capabilities">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="host">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="cpu">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="arch"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="migration_features">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="live"/>
+                    <xs:element name="uri_transports">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:string" name="uri_transport"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="topology">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="cells">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="cell">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="cpus">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element name="cpu" maxOccurs="unbounded" minOccurs="0">
+                                        <xs:complexType>
+                                          <xs:simpleContent>
+                                            <xs:extension base="xs:string">
+                                              <xs:attribute type="xs:byte" name="id" use="optional"/>
+                                            </xs:extension>
+                                          </xs:simpleContent>
+                                        </xs:complexType>
+                                      </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute type="xs:byte" name="num"/>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                              <xs:attribute type="xs:byte" name="id"/>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                        <xs:attribute type="xs:byte" name="num"/>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="guest" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:string" name="os_type"/>
+              <xs:element name="arch">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:byte" name="wordsize"/>
+                    <xs:element type="xs:string" name="emulator"/>
+                    <xs:element type="xs:string" name="machine" maxOccurs="unbounded" minOccurs="0"/>
+                    <xs:element name="domain" maxOccurs="unbounded" minOccurs="0">
+                      <xs:complexType mixed="true">
+                        <xs:sequence>
+                          <xs:element type="xs:string" name="emulator" minOccurs="0"/>
+                        </xs:sequence>
+                        <xs:attribute type="xs:string" name="type" use="optional"/>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute type="xs:string" name="name" use="optional"/>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="features">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="pae" minOccurs="0"/>
+                    <xs:element type="xs:string" name="nonpae" minOccurs="0"/>
+                    <xs:element name="acpi">
+                      <xs:complexType>
+                        <xs:simpleContent>
+                          <xs:extension base="xs:string">
+                            <xs:attribute type="xs:string" name="default" use="optional"/>
+                            <xs:attribute type="xs:string" name="toggle" use="optional"/>
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="apic">
+                      <xs:complexType>
+                        <xs:simpleContent>
+                          <xs:extension base="xs:string">
+                            <xs:attribute type="xs:string" name="default" use="optional"/>
+                            <xs:attribute type="xs:string" name="toggle" use="optional"/>
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,73 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="domain">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element type="xs:string" name="name"/>
+        <xs:element type="xs:string" name="uuid"/>
+        <xs:element type="xs:int" name="memory"/>
+        <xs:element type="xs:byte" name="currentMemory"/>
+        <xs:element type="xs:byte" name="vcpu"/>
+        <xs:element name="os">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:string" name="type"/>
+              <xs:element name="boot">
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                      <xs:attribute type="xs:string" name="dev"/>
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="devices">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:string" name="emulator"/>
+              <xs:element name="disk">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="source">
+                      <xs:complexType>
+                        <xs:simpleContent>
+                          <xs:extension base="xs:string">
+                            <xs:attribute type="xs:string" name="file"/>
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="target">
+                      <xs:complexType>
+                        <xs:simpleContent>
+                          <xs:extension base="xs:string">
+                            <xs:attribute type="xs:string" name="dev"/>
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element type="xs:string" name="readonly"/>
+                  </xs:sequence>
+                  <xs:attribute type="xs:string" name="type"/>
+                  <xs:attribute type="xs:string" name="device"/>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="memballoon">
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                      <xs:attribute type="xs:string" name="model"/>
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute type="xs:string" name="type"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
